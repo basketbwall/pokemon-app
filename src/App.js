@@ -4,6 +4,12 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { render } from '@testing-library/react';
 
+Storage.prototype.setObj = function(key, obj) {
+  return this.setItem(key, JSON.stringify(obj))
+}
+Storage.prototype.getObj = function(key) {
+  return JSON.parse(this.getItem(key))
+}
 
 //app needs to be rewritten to hold information about caught pokemon
 
@@ -11,10 +17,14 @@ import { render } from '@testing-library/react';
 class App extends React.Component{
   constructor(props) {
     super(props);
+    var data;
+    if (localStorage.getObj('inventory') == null) {
+      data = [];
+    } else {
+      data = localStorage.getObj('inventory');
+    }
     this.state = {
-      inventory: [
-        { name: 'ditto', image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"},
-      ],
+      inventory: data,
       selectedName: null,
       selectedImage: null
     };
@@ -24,6 +34,7 @@ class App extends React.Component{
     this.setState({
       inventory: array,
     })
+    localStorage.setObj('inventory', array);
   }
 
   render() {
@@ -113,7 +124,7 @@ class Card extends React.Component {
   };
 
   addPokemon() {
-    this.props.inventory.push( { image: this.state.image, name: this.state.name });
+    this.props.inventory.push( { image: this.state.image, name: this.state.name } );
     this.props.updateInventory();
   }
 }
