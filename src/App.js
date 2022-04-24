@@ -137,6 +137,7 @@ class Card extends React.Component {
   addPokemon() {
     this.props.inventory.push( { image: this.state.image, name: this.state.name } );
     this.props.updateInventory();
+    this.componentDidMount();
   }
 }
 
