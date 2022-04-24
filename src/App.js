@@ -40,12 +40,23 @@ class App extends React.Component{
   render() {
     return (
       <div className="App">
+        <div class="mt-5"></div>
         <div>
-          <Card updateInventory={() => this.updateInventory(this.state.inventory)} inventory={this.state.inventory}/>
-          <Card updateInventory={() => this.updateInventory(this.state.inventory)} inventory={this.state.inventory}/>
-          <Card updateInventory={() => this.updateInventory(this.state.inventory)} inventory={this.state.inventory}/>
+          <h1>Choose a Pokemon to catch!</h1>
+          <Card
+            updateInventory={() => this.updateInventory(this.state.inventory)} 
+            inventory={this.state.inventory}
+          />
+          <Card
+            updateInventory={() => this.updateInventory(this.state.inventory)} 
+            inventory={this.state.inventory}
+          />
+          <Card
+            updateInventory={() => this.updateInventory(this.state.inventory)} 
+            inventory={this.state.inventory}
+          />
         </div>
-        <div>
+        <div class="mt-5">
           <CardStorage inventory={this.state.inventory}/>
         </div>
       </div>
@@ -61,7 +72,7 @@ class CardStorage extends React.Component {
         <div>
           {this.props.inventory.map(
             (item) =>
-            <div>
+            <div className="Collected">
               <img src={item.image}></img>
               <p>{item.name}</p>
             </div>

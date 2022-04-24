@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  display: inline-block !important;
+  width: 200px;
+  height: 200px;
+}
+
+.Collected {
+  display: inline-block !important;
+  width: 200px;
+}
